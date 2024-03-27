@@ -19,6 +19,14 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::view('/leads-in-progress', 'leads-in-progress')
+    ->middleware(['auth', 'verified'])
+    ->name('LeadsInProgress');
+
+Route::view('/new-leads', 'new-leads')
+    ->middleware(['auth', 'verified'])
+    ->name('NewLeads');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');

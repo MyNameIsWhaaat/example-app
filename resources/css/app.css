@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input{
+    @apply rounded border-gray-400 px-2 py-1 w-full my-2 !important;
+}
+
+.btn{
+    @apply rounded px-3 py-2 !important;
+}
+
+.btn-red{
+    @apply bg-red-400 text-white border-red-300 hover:bg-red-300 hover:border-red-300;
+}
+
+.btn-purple{
+    @apply bg-purple-400 text-white border-purple-200 hover:bg-purple-300 hover:border-purple-300 hover:text-black;
+}
+
+.btn-blue{
+    @apply bg-blue-500 text-white border-blue-400 hover:bg-blue-300 hover:border-blue-300 hover:text-black;
+}
+

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('phone');
             $table->text('email');
             $table->text('comment');
+            $table->enum('status', ['new', 'in_progress']);
             $table->timestamps();
         });
     }

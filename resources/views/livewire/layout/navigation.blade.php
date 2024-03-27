@@ -18,16 +18,31 @@ $logout = function (Logout $logout) {
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-green-600" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
+
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
+                        {{ __('All leads') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('NewLeads')" :active="request()->routeIs('NewLeads')" wire:navigate>
+                        {{ __('New leads') }}
+                    </x-nav-link>
+                </div>
+                <!-- Здесь по идее должна быть моя компонента -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('LeadsInProgress')" :active="request()->routeIs('LeadsInProgress')" wire:navigate>
+                        {{ __('Leads In Progress') }}
+                    </x-nav-link>
+                </div>
+
+
+                <!-- Здесь по идее должна быть моя компонента -->
             </div>
 
             <!-- Settings Dropdown -->
