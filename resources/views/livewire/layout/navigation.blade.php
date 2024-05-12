@@ -23,23 +23,27 @@ $logout = function (Logout $logout) {
                 </div>
 
                 <!-- Navigation Links -->
-
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('All leads') }}
-                    </x-nav-link>
+                      {{ __('Dashboard') }}
+                  </x-nav-link>  
+
+                @role('super-user')
+                  <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')" wire:navigate>
+                      {{ __('Roles') }}
+                  </x-nav-link>  
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('NewLeads')" :active="request()->routeIs('NewLeads')" wire:navigate>
-                        {{ __('New leads') }}
-                    </x-nav-link>
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
+                      {{ __('Users') }}
+                  </x-nav-link>  
                 </div>
-                <!-- Здесь по идее должна быть моя компонента -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('LeadsInProgress')" :active="request()->routeIs('LeadsInProgress')" wire:navigate>
-                        {{ __('Leads In Progress') }}
-                    </x-nav-link>
-                </div>
+                @endrole
+
+              </div>
+                
+                 
 
 
                 <!-- Здесь по идее должна быть моя компонента -->

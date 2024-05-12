@@ -18,9 +18,24 @@
                 <input type="text" placeholder="коммент" wire:model="form.comment">
             </div>
             <div class="col-span-4">
+                <label for="">Статус лида</label>
                 <select wire:model="form.status">
                     @foreach(App\Livewire\Leads\LeadStatus::asArray() as $value => $label)
-                        <option value="{{ $value }}" @if($value === $form->status) selected @endif>{{ $label }}</option>
+                        <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </select>
+            
+                <label for="">Ответственный</label>
+                <select wire:model="form.user_id">
+                    @foreach (App\Models\User::users() as $user)
+                        <option value="{{ $user->id }}">{{ $user->id }}</option>
+                    @endforeach
+                </select>
+            
+                <label for="">Отдел</label>
+                <select wire:model="form.department_id">
+                    @foreach (App\Models\Department::departments() as $department)
+                        <option value="{{ $department->id }}">{{ $department->id }}</option>
                     @endforeach
                 </select>
             </div>

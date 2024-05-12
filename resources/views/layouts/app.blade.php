@@ -20,11 +20,25 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+            <header class="bg-white shadow">
+                <div class="flex justify-around max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div>
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                            {{ __('All leads') }}
+                        </x-nav-link>
                     </div>
-                </header>
+                    <div>
+                        <x-nav-link :href="route('NewLeads')" :active="request()->routeIs('NewLeads')" wire:navigate>
+                            {{ __('New leads') }}
+                        </x-nav-link>
+                    </div>
+                    <div>
+                        <x-nav-link :href="route('LeadsInProgress')" :active="request()->routeIs('LeadsInProgress')" wire:navigate>
+                            {{ __('Leads In Progress') }}
+                        </x-nav-link>
+                    </div>
+                </div>
+            </header>
             @endif
 
             <!-- Page Content -->

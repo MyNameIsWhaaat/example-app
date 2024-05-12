@@ -13,6 +13,8 @@ class Leads extends Component
     public $currentLeadId;
     public $status;
 
+    public $user_id;
+
     public function mount()
     {
         $this->displayPanel = false;
@@ -44,17 +46,7 @@ class Leads extends Component
     {
         $this->displayPanel = false;
         $this->currentLeadId= null;
-    }
-
-//    public function render()
-//    {
-//
-//        return view('livewire.leads.leads', [
-//            'leads'=> Lead::all()
-//
-//        ] );
-//    }
-//Будущий вариант
+    } 
     public function render()
     {
         $leadsQuery = Lead::query();

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route; 
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Route::view('/', 'welcome');
 
 Route::view('dashboard', 'dashboard')
@@ -22,13 +25,26 @@ Route::view('dashboard', 'dashboard')
 Route::view('/leads-in-progress', 'leads-in-progress')
     ->middleware(['auth', 'verified'])
     ->name('LeadsInProgress');
-
+  
 Route::view('/new-leads', 'new-leads')
     ->middleware(['auth', 'verified'])
     ->name('NewLeads');
-
+ 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('role:super-user');
+    Route::resource('users', App\Http\Controllers\UserController::class)->middleware('role:super-user'); 
+    
+
+});
+
+
+
 
 require __DIR__.'/auth.php';
