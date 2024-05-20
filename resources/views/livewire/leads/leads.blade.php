@@ -58,16 +58,15 @@
                 </div>
                 
                 <div class="col-span-1 grid grid-cols-1 grid-rows-2 gap-2 px-2 py-3">
-                   @if(auth()->user()->can('edit leads'))
+                   
                     <button class="btn btn-purple" wire:click="getDataForEdit({{ $lead->id }})">
                         Изменить
                     </button>
-                    @endif
-                    @if(auth()->user()->can('delete leads'))
+                    
                     <button class="btn btn-red" wire:click="tryDelete({{ $lead->id }})">
                         Удалить
                     </button>
-                    @endif
+                    
                 </div>
             </div>
        @endforeach
