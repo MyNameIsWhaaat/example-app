@@ -6,15 +6,17 @@ use App\Livewire\Leads\LeadStatus;
 use App\Models\Lead;
 use Brick\Math\BigInteger;
 use Livewire\Attributes\Validate;
-use Livewire\Form; 
+use Livewire\Form;
+use App\Models\Department; 
+use App\Models\User; 
 
 class LeadForm extends Form
 {
-    #[Validate('required')]
+    #[Validate('required', 'name')]
     public $name;
-    #[Validate('required')]
+    #[Validate('required', 'phone')]
     public $phone;
-    #[Validate('required')]
+    #[Validate('required', 'email')]
     public $email;
     public $comment;
 
@@ -23,9 +25,21 @@ class LeadForm extends Form
     public $user_id;
 
     public $department_id;
+ 
 
     public ?Lead $lead;
 
+    public ?Department $department;
+    public ?User $user;
+
+    public function rules()
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email|max:255', 
+        ];
+    }
     public function setLead($lead)
     {
         $this -> lead = $lead;
@@ -52,6 +66,12 @@ class LeadForm extends Form
     {
         $this->department_id = $department_id;
     }
+
+    public function getDepartmentName()
+    {
+        return $this->department_id->name;
+    }
+
     public function update()
     {
         $this->lead->update($this->all()); 

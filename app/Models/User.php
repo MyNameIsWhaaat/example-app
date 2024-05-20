@@ -11,6 +11,9 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+
+    protected $table = 'users';
+
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
@@ -52,5 +55,10 @@ class User extends Authenticatable
     public static function users()
     {
         return User::all();
+    }
+
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class, 'users_departments');
     }
 }

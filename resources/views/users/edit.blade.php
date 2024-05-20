@@ -14,6 +14,14 @@
                                     <input type="text" name="name" value="{{$user->name}}" class="form-control" id="exampleInputEmail1">
                                 </div>
                                 <div class="col-span-2">
+                                    <label for="department_id">Отдел</label>
+                                    <select name="department_id" id="department_id" class="form-control">
+                                        @foreach (App\Models\Department::departments() as $department)
+                                            <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-span-2">
                                     <label for="exampleFormControlSelect2">Role</label>
                                     
                                 </div>

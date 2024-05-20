@@ -9,8 +9,16 @@ class Department extends Model
 {
     use HasFactory;
 
+    protected $table = 'departments';
+
+
     public static function departments()
     {
         return Department::all();
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_departments');
     }
 }

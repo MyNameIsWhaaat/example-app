@@ -12,9 +12,7 @@ return new class extends Migration
     public function up(): void
 {
     Schema::table('leads', function (Blueprint $table) {  
-        $table->foreign('user_id')
-          ->references('id')->on('users')
-          ->onDelete('cascade'); 
+         
     });
 }
 

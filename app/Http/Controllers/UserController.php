@@ -9,9 +9,7 @@ use \Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+     
     public function index() : View
     {
         $users = User::orderBy('created_at')->get();
@@ -21,33 +19,44 @@ class UserController extends Controller
         ]));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+     
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+     
     public function store(Request $request)
     {
-        //
-    }
+        
+        // Валидация данных
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'department_id' => 'required|exists:departments,id',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
+        // Создание пользователя
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt('testUser123'),
+        ]);
+
+        // Получение выбранного отдела из формы
+        $departmentId = $validatedData['department_id'];
+
+        // Связывание пользователя с выбранным отделом
+        $user->departments()->attach($departmentId);
+
+        return redirect()->route('users.index');
+    }
+ 
     public function show(User $user)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+ 
     public function edit(User $user): View
     {
         $roles = Role::orderBy('name')->get();
@@ -58,9 +67,7 @@ class UserController extends Controller
         ]));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+     
     public function update(Request $request, User $user)
     {
         
@@ -77,14 +84,18 @@ class UserController extends Controller
 
         $user->syncRoles([$role->name]);
 
+        // Получение выбранного отдела из формы
+        $department_id = $request->input('department_id');
+
+        // Связывание пользователя с выбранным отделом
+        $user->departments()->attach($department_id);
+
         return redirect()->route('users.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+ 
     public function destroy(User $user)
     {
-        //
+        $user = User::find($user->id)->delete();
+        return redirect()->route('users.index');
     }
 }

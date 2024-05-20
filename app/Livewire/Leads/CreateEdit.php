@@ -25,7 +25,7 @@ class CreateEdit extends Component
                 $this->form->update();
                 $this->dispatch('lead-updated', $this->id);
                 $this->id = null;
-            } else {
+            } elseif(auth()->user()->can('add leads')) {
                 $this->form->create();
             }
             $this->form->reset();

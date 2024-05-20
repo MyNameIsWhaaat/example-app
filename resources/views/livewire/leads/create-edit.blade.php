@@ -1,4 +1,5 @@
 <div>
+    
     <form wire:submit="createUpdate">
         <div class="grid grid-cols-4 gap-1 px-3">
             <div class="col-span-2">
@@ -28,19 +29,19 @@
                 <label for="">Ответственный</label>
                 <select wire:model="form.user_id">
                     @foreach (App\Models\User::users() as $user)
-                        <option value="{{ $user->id }}">{{ $user->id }}</option>
+                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                 </select>
             
                 <label for="">Отдел</label>
                 <select wire:model="form.department_id">
                     @foreach (App\Models\Department::departments() as $department)
-                        <option value="{{ $department->id }}">{{ $department->id }}</option>
+                        <option value="{{ $department->id }}">{{ $department->name }}</option>
                     @endforeach
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-blue">
+            <button type="submit" wire:model="form.rules" class="btn btn-blue">
                 @isset($id)
                     Обновить
                 @else
